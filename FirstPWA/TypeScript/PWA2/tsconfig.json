@@ -11,11 +11,11 @@
     // "target": "esnext",
     // "module": "amd", // define, export, like playground
     // "module": "commonjs", // require
-    // "module": "ES2015", // just like typescript
+    "module": "ES2015", // just like typescript
     // "module": "system", // System.register
     //  "module": "umd", // factory, require, exports
     // "module": "esnext", // like typescript
-    "module": "none", // Object.defineProperty, require
+    // "module": "none", // Object.defineProperty, require
     // "module": "commonjs",
     "lib": [
       "DOM",
@@ -35,11 +35,11 @@
     ],
 
     // "importHelpers": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": true,
     "sourceMap": false,
-    "outDir": "../../wwwroot/ts/PWA",
+    "outDir": "../../wwwroot/ts/PWA2",
     "rootDir": "./",
     "allowUnreachableCode": true
     //,"alwaysStrict ": true,

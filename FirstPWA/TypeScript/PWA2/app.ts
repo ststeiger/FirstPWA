@@ -17,20 +17,23 @@
  */
 'use strict';
 
-
-// import * as luxon from './luxon.js';
-// import * as JsonData from 'JsonTypes';
+// requires: export { DateTime, Duration, Interval, Info, Zone, FixedOffsetZone, IANAZone, InvalidZone, LocalZone, Settings };
+import * as luxon from './luxon.js';
+import * as JsonData from 'JsonTypes';
+// import * as foo from './mymodule.js';
+// foo.hello();
+// foo.helloWorld();
 
 // declare var luxon: any;
 
 
+interface location_t { label: string, geo: string }
 
-interface location_t  {label: string, geo:string}
-
-interface  locations_t { [key:string] : location_t }
+interface locations_t { [key: string]: location_t }
 
 
-interface IWeatherApp {
+interface IWeatherApp
+{
     selectedLocations: locations_t,
     addDialogContainer: HTMLElement,
 }
@@ -38,7 +41,7 @@ interface IWeatherApp {
 
 
 
-const weatherApp : IWeatherApp = {
+const weatherApp: IWeatherApp = {
     selectedLocations: {},
     addDialogContainer: document.getElementById('addDialogContainer'),
 };
@@ -62,7 +65,7 @@ function addLocation()
     const location = { label: label, geo: geo };
     // Create a new card & get the weather data from the server
     const card = getForecastCard(location);
-    
+
     getForecastFromNetwork(geo).then((forecast) =>
     {
         renderForecast(card, forecast);
@@ -73,7 +76,7 @@ function addLocation()
 }
 
 // Event handler for .remove-city, removes a location from the list.
-function removeLocation(evt:MouseEvent)
+function removeLocation(evt: MouseEvent)
 {
     const parent = (<HTMLElement>evt.target).parentElement
     parent.remove();
@@ -90,7 +93,7 @@ function removeLocation(evt:MouseEvent)
  * @param {Element} card The card element to update.
  * @param {Object} data Weather forecast data to update the element with.
  */
-function renderForecast(card: HTMLElement, data: WeatherInfo)
+function renderForecast(card: HTMLElement, data: JsonData.WeatherInfo)
 {
     if (!data)
     {
@@ -140,7 +143,7 @@ function renderForecast(card: HTMLElement, data: WeatherInfo)
 
     // Render the next 7 days.
     const futureTiles = card.querySelectorAll('.future .oneday');
-    futureTiles.forEach((tile:HTMLElement, index:number) =>
+    futureTiles.forEach((tile: HTMLElement, index: number) =>
     {
         const forecast = data.daily.data[index + 1];
         const forecastFor = luxon.DateTime
@@ -165,14 +168,14 @@ function renderForecast(card: HTMLElement, data: WeatherInfo)
 
 
 // C = (5/9) * (F - 32)
-function f2c(F:number)
+function f2c(F: number)
 {
-    return (5/9) * (F - 32);
+    return (5 / 9) * (F - 32);
 }
 
 
 // km = m * 1.60934
-function mph2kmh(m:number)
+function mph2kmh(m: number)
 {
     return m * 1.60934;
 }
@@ -185,37 +188,37 @@ function mph2kmh(m:number)
  * @param {string} coords Location object to.
  * @return {Object} The weather forecast, if the request fails, return null.
  */
-async function getForecastFromNetwork(coords:string, metric?:boolean)
+async function getForecastFromNetwork(coords: string, metric?: boolean)
 {
     try
     {
         let response = await fetch(`/forecast/${coords}`);
         let txt = await response.text();
         // console.log("got text", txt);
-        
+
         let json = JSON.parse(txt);
-        
-        if(metric == null)
-            metric= true;
-        
-        if(metric)
+
+        if (metric == null)
+            metric = true;
+
+        if (metric)
         {
-            if(json && json.currently)
+            if (json && json.currently)
             {
                 json.currently.temperature = f2c(json.currently.temperature);
                 json.currently.windSpeed = mph2kmh(json.currently.windSpeed);
             }
-            
-            if(json && json.daily && json.daily.data)
+
+            if (json && json.daily && json.daily.data)
             {
-                for(let i = 0; i < json.daily.data.length;++i)
+                for (let i = 0; i < json.daily.data.length; ++i)
                 {
                     json.daily.data[i].temperatureHigh = f2c(json.daily.data[i].temperatureHigh);
                     json.daily.data[i].temperatureLow = f2c(json.daily.data[i].temperatureLow);
                 } // Next i 
             }
         }
-        
+
         return json;
     }
     catch (err)
@@ -223,7 +226,7 @@ async function getForecastFromNetwork(coords:string, metric?:boolean)
         console.log("error: getForecastFromNetwork", err);
         return null;
     }
-    
+
 
     /*
     return fetch(`/forecast/${coords}`)
@@ -250,10 +253,10 @@ async function getForecastFromNetwork(coords:string, metric?:boolean)
  * @param {string} coords Location object to.
  * @return {Object} The weather forecast, if the request fails, return null.
  */
-function getForecastFromCache(coords:string)
+function getForecastFromCache(coords: string)
 {
     // CODELAB: Add code to get weather forecast from the caches object.
-    
+
 }
 
 /**
@@ -263,7 +266,7 @@ function getForecastFromCache(coords:string)
  * @param {Object} location Location object
  * @return {Element} The element for the weather forecast.
  */
-function getForecastCard(location:location_t)
+function getForecastCard(location: location_t)
 {
     const id = location.geo;
     const card = document.getElementById(id);
@@ -272,7 +275,7 @@ function getForecastCard(location:location_t)
         return card;
     }
 
-    const newCard =<HTMLElement> document.getElementById('weather-template').cloneNode(true);
+    const newCard = <HTMLElement>document.getElementById('weather-template').cloneNode(true);
     newCard.querySelector('.location').textContent = location.label;
     newCard.setAttribute('id', id);
     newCard.querySelector('.remove-city')
@@ -285,9 +288,9 @@ function getForecastCard(location:location_t)
 // Gets the latest weather forecast data and updates each card with the new data.
 function updateData()
 {
-    Object.keys(weatherApp.selectedLocations).forEach((key:string) =>
+    Object.keys(weatherApp.selectedLocations).forEach((key: string) =>
     {
-        const location:location_t = <location_t> <any>weatherApp.selectedLocations[key];
+        const location: location_t = <location_t><any>weatherApp.selectedLocations[key];
         const card = getForecastCard(location);
         // CODELAB: Add code to call getForecastFromCache
 
@@ -302,7 +305,7 @@ function updateData()
 
 
 // Saves the list of locations.
-function saveLocationList(locations:locations_t)
+function saveLocationList(locations: locations_t)
 {
     const data = JSON.stringify(locations);
     localStorage.setItem('locationList', data);
@@ -310,10 +313,10 @@ function saveLocationList(locations:locations_t)
 
 
 // Loads the list of saved location.
-function loadLocationList():locations_t
+function loadLocationList(): locations_t
 {
-    let json:string = localStorage.getItem('locationList');
-    let locations :locations_t;
+    let json: string = localStorage.getItem('locationList');
+    let locations: locations_t;
     if (json)
     {
         try

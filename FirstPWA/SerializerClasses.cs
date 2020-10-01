@@ -17,42 +17,43 @@ namespace FirstPWA
     // https://web.dev/progressive-web-apps/
 
 
-    public partial class Temperatures
+    public partial class Datum
     {
-        public bool FakeData { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public string Timezone { get; set; }
-        public Currently Currently { get; set; }
-        public Daily Daily { get; set; }
-    }
-
-
-    public partial class Currently
-    {
-        public long Time { get; set; }
-        public string Summary { get; set; }
-        public string Icon { get; set; }
-        public double Temperature { get; set; }
-        public double Humidity { get; set; }
-        public double WindSpeed { get; set; }
-        public long WindBearing { get; set; }
+        public long time { get; set; }
+        public string icon { get; set; }
+        public long sunriseTime { get; set; }
+        public long sunsetTime { get; set; }
+        public decimal temperatureHigh { get; set; }
+        public decimal temperatureLow { get; set; }
     }
 
 
     public partial class Daily
     {
-        public Datum[] Data { get; set; }
+        public Datum[] data { get; set; }
     }
 
-    public partial class Datum
+
+    public partial class Currently
     {
-        public long Time { get; set; }
-        public string Icon { get; set; }
-        public long SunriseTime { get; set; }
-        public long SunsetTime { get; set; }
-        public double TemperatureHigh { get; set; }
-        public double TemperatureLow { get; set; }
+        public long time { get; set; }
+        public string summary { get; set; }
+        public string icon { get; set; }
+        public decimal temperature { get; set; }
+        public decimal humidity { get; set; }
+        public decimal windSpeed { get; set; }
+        public long windBearing { get; set; }
+    }
+
+
+    public partial class RootElement
+    {
+        public bool fakeData { get; set; }
+        public decimal latitude { get; set; }
+        public decimal longitude { get; set; }
+        public string timezone { get; set; }
+        public Currently currently { get; set; }
+        public Daily daily { get; set; }
     }
 
 
