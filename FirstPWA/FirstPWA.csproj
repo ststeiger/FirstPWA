@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="TypeScript\PWA\app.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="TypeScript\PWA\install.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
     <Content Include="Views\msSample\css\site.css" />
     <Content Include="Views\msSample\js\site.js" />
     <Content Include="Views\msSample\lib\bootstrap\dist\css\bootstrap-grid.css" />
@@ -40,6 +48,10 @@
     <Content Include="Views\msSample\lib\jquery\dist\jquery.min.js" />
     <Content Include="Views\msSample\lib\jquery\dist\jquery.min.map" />
     <Content Include="Views\msSample\lib\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TypeScript" />
   </ItemGroup>
 
 </Project>
