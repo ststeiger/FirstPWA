@@ -39,7 +39,7 @@
     "noEmitOnError": true,
     "removeComments": true,
     "sourceMap": false,
-    "outDir": "../../wwwroot/ts/PWA2",
+    "outDir": "../../wwwroot/google-first/ts/PWA2",
     "rootDir": "./",
     "allowUnreachableCode": true
     //,"alwaysStrict ": true,

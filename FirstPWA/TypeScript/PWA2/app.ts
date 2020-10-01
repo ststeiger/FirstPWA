@@ -18,13 +18,16 @@
 'use strict';
 
 // requires: export { DateTime, Duration, Interval, Info, Zone, FixedOffsetZone, IANAZone, InvalidZone, LocalZone, Settings };
-import * as luxon from './luxon.js';
+// import * as luxon from './luxon.js';
+import luxon from "./luxon.js";
+
 import * as JsonData from 'JsonTypes';
 // import * as foo from './mymodule.js';
 // foo.hello();
 // foo.helloWorld();
 
 // declare var luxon: any;
+
 
 
 interface location_t { label: string, geo: string }

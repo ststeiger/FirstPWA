@@ -603,3 +603,30 @@ export class InvalidZone extends Zone { }
 export class LocalZone extends Zone { }
 
 // } }
+
+/*
+declare let exports: {
+    "DateTime": DateTime,
+    "Duration": Duration,
+    "Interval": Interval,
+    "Info": Info,
+    "Zone": Zone,
+    "FixedOffsetZone": FixedOffsetZone,
+    "IANAZone": IANAZone,
+    "InvalidZone": InvalidZone,
+    "LocalZone": LocalZone, 
+    "Settings": Settings
+};
+export default exports;
+*/
+
+/*
+declare let luxon: {
+    DateTime: DateTime, Duration: Duration, Interval: Interval // , Info: Info
+    , Zone: Zone, FixedOffsetZone: FixedOffsetZone, IANAZone: IANAZone
+    , InvalidZone: InvalidZone, LocalZone: LocalZone //, Settings: Settings
+};
+*/
+
+declare let luxon: any;
+export default luxon;

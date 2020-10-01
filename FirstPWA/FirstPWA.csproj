@@ -57,4 +57,20 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\contactbook\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\google-first\ts\PWA2\luxon - Kopieren %282%29.js.map">
+      <DependentUpon>luxon.js.map</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\google-first\ts\PWA2\luxon - Kopieren - Kopieren.js.map">
+      <DependentUpon>luxon - Kopieren.js.map</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\google-first\ts\PWA2\luxon - Kopieren.js.map">
+      <DependentUpon>luxon.js.map</DependentUpon>
+    </Content>
+  </ItemGroup>
+
 </Project>
