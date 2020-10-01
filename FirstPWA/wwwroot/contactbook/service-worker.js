@@ -10,6 +10,9 @@ var resourcesToCache = [
     '/js/app.js'
 ];
 
+
+
+
 self.addEventListener('install', function(event) {
     console.info('installing service worker');
 

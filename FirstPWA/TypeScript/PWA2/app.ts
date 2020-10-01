@@ -28,6 +28,25 @@ import * as JsonData from 'JsonTypes';
 
 // declare var luxon: any;
 
+/*
+var a =
+{
+      method: "GET"
+    , url: "https://developers.google.com/web/fundamentals/primers/service-workers/a"
+    , headers: Headers
+    , destination: "empty"
+    , referrer: "about:client"
+    , bodyUsed: false
+    , cache: "default"
+    , credentials: "same-origin"
+    , keepalive: false
+    , mode: "cors"
+    , redirect: "follow"
+    , referrer: "about:client"
+    , referrerPolicy: ""
+}
+*/
+
 
 
 interface location_t { label: string, geo: string }
@@ -40,7 +59,6 @@ interface IWeatherApp
     selectedLocations: locations_t,
     addDialogContainer: HTMLElement,
 }
-
 
 
 
